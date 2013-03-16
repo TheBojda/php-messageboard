@@ -3,7 +3,7 @@
 	
 	if($path=='/messages') {
 		$time = $_GET['time'];
-		$db = new SQLite3('newsfeed.db');
+		$db = new SQLite3('messages.db');
 		$res = $db->query(sprintf('select * from messages where time>%d order by time asc', $time));
 		$result = array();
 		while ($row = $res->fetchArray()) { 		
@@ -32,7 +32,7 @@
 
 	if($path=='/add_message') {
 		$data = json_decode(file_get_contents('php://input'));
-		$db = new SQLite3('newsfeed.db');
+		$db = new SQLite3('messages.db');
 		$db->exec(sprintf("insert into messages (`message`, `time`, `grhash`) values ('%s', '%d', '%s')", 
 			SQLite3::escapeString(myutf8_decode($data->message)), 
 			time(),
@@ -47,17 +47,17 @@
 <html lang="en"ng-app="ui">
   <head>
     <meta charset="utf-8">
-    <title>Newsfeed</title>
+    <title>PHP AngularJS messageboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Simple (only one file) PHP newsfeed example built with AngularJS, AngularUI, and Twitter Bootstrap">
+    <meta name="author" content="The Bojda (https://github.com/TheBojda)">
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 
   <style type="text/css">
 	body {
-		padding-top: 20px;
+		padding-top: 60px;
 	}
       
 	.item {
@@ -82,6 +82,15 @@
     <![endif]-->
   </head>
   <body>
+  
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">PHP + AngularJS newsfeed example</a>
+			</div>
+		</div>
+	</div>
+  
 	<div class="container" ng-controller="NewsFeedCtrl">
 		<div class="row span6">
 			<div class="row-fluid">
