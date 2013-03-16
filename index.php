@@ -86,12 +86,12 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="#">PHP + AngularJS newsfeed example</a>
+				<a class="brand" href="#">PHP + AngularJS messageboard example</a>
 			</div>
 		</div>
 	</div>
   
-	<div class="container" ng-controller="NewsFeedCtrl">
+	<div class="container" ng-controller="MessageBoardCtrl">
 		<div class="row span6">
 			<div class="row-fluid">
 				<div class="span2"></div>
@@ -112,11 +112,14 @@
 			</div>
 		</div>
 	</div>
+	
+	<a href="https://github.com/TheBojda/php-messageboard" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	
 	<script src="js/jquery.js"></script>
 	<script src="js/angular.js"></script>
 	<script src="js/angular-ui.js"></script>
 	<script>
-		function NewsFeedCtrl($scope, $http, $timeout) {
+		function MessageBoardCtrl($scope, $http, $timeout) {
 			$scope.items = [];
 			$scope.message = '';
 			$scope.email = '';
